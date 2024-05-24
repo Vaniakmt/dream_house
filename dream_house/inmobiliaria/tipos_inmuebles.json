@@ -1,0 +1,23 @@
+[
+    {
+        "model": "inmobiliaria.tipoinmueble",
+        "pk": 1,
+        "fields": {
+            "name": "Casa"
+        }
+    },
+    {
+        "model": "inmobiliaria.tipoinmueble",
+        "pk": 2,
+        "fields": {
+            "name": "Departamento"
+        }
+    },
+    {
+        "model": "inmobiliaria.tipoinmueble",
+        "pk": 3,
+        "fields": {
+            "name": "Oficina"
+        }
+    }
+]

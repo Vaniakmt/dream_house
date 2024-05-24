@@ -1,0 +1,15 @@
+{% extends 'base.html' %} <!-- Extender la plantilla base -->
+
+{% block title %}Editar Perfil{% endblock %} <!-- Definir el título de la página -->
+
+{% block content %} <!-- Definir el bloque de contenido -->
+
+<h1>Editar Perfil</h1> <!-- Encabezado de la página -->
+<form method="post" enctype="multipart/form-data"> <!-- Formulario para editar el perfil -->
+    {% csrf_token %} <!-- Token de seguridad CSRF -->
+    {{ user_form.as_p }} <!-- Renderizar los campos del formulario de usuario como párrafos -->
+    {{ profile_form.as_p }} <!-- Renderizar los campos del formulario de perfil como párrafos -->
+    <button type="submit">Guardar cambios</button> <!-- Botón para guardar los cambios -->
+</form>
+<a href="{% url 'profile' %}">Cancelar</a> <!-- Enlace para cancelar y volver al perfil -->
+{% endblock %} <!-- Fin del bloque de contenido -->

@@ -1,0 +1,43 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base -->
+
+{% block title %}Perfil{% endblock %} <!-- Título de la página -->
+
+{% block content %} <!-- Contenido principal -->
+
+<div class="container"> <!-- Contenedor principal -->
+    <h1 class="mt-4">Mi Perfil</h1> <!-- Título de la página -->
+    <div class="row align-items-start"> <!-- Fila para alinear elementos -->
+        <div class="col-md-6"> <!-- Columna para mostrar detalles del perfil -->
+            <ul class="list-group"> <!-- Lista para mostrar detalles -->
+                <li class="list-group-item"><strong>Nombre usuario:</strong> {{ user.username }}</li> <!-- Detalle del nombre de usuario -->
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li> <!-- Detalle del correo electrónico -->
+                <li class="list-group-item"><strong>RUT:</strong> {{ user.RUT }}</li> <!-- Detalle del RUT -->
+                <li class="list-group-item"><strong>Nombres:</strong> {{ user.first_name }}</li> <!-- Detalle del primer nombre -->
+                <li class="list-group-item"><strong>Apellidos:</strong> {{ user.last_name }}</li> <!-- Detalle del apellido -->
+                <li class="list-group-item"><strong>Dirección:</strong> {{ user.address }}</li> <!-- Detalle de la dirección -->
+                <li class="list-group-item"><strong>Teléfono contacto:</strong> {{ user.phone }}</li> <!-- Detalle del teléfono de contacto -->
+                <li class="list-group-item"><strong>User Type:</strong> {{ user.user_type }}</li> <!-- Detalle del tipo de usuario -->
+            </ul>
+            <div class="mt-2"> <!-- Div para botones adicionales -->
+                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Editar Perfil</a> <!-- Botón para editar perfil -->
+                <a href="{% url 'edit_profile' %}" class="btn btn-secondary">Cambiar Imagen de Perfil</a> <!-- Botón para cambiar imagen de perfil -->
+                {% if user.user_type == 'arrendador' %} <!-- Verificar si el usuario es un arrendador -->
+                    <a href="{% url 'mis_propiedades' %}" class="btn btn-info">Mis Propiedades</a> <!-- Botón para ver las propiedades del arrendador -->
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6"> <!-- Columna para mostrar la imagen de perfil -->
+            <div class="card mt-4"> <!-- Tarjeta para la imagen de perfil -->
+                <div class="card-body"> <!-- Cuerpo de la tarjeta -->
+                    {% if user.profile.imagen %} <!-- Verificar si hay una imagen de perfil -->
+                        <img src="{{ user.profile.imagen.url }}" class="img-fluid" alt="Imagen de perfil"> <!-- Mostrar la imagen de perfil -->
+                    {% else %}
+                        <i class="fas fa-user-circle fa-10x text-muted"></i> <!-- Icono de usuario si no hay imagen de perfil -->
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} <!-- Fin del bloque de contenido -->

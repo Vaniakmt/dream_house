@@ -1,0 +1,22 @@
+{% extends 'base.html' %} <!-- Heredar la estructura de la plantilla base -->
+
+{% block content %} <!-- Definir el bloque de contenido -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Inmueble</title> <!-- Título de la página -->
+</head>
+<body>
+    <h1>Actualizar Inmueble</h1> <!-- Título principal de la página -->
+    <form method="post"> <!-- Formulario para actualizar un inmueble -->
+        {% csrf_token %} <!-- Token CSRF para protección contra ataques de falsificación de solicitudes entre sitios -->
+        {{ form.as_p }} <!-- Renderizar el formulario en formato de párrafos -->
+        <button type="submit">Guardar Cambios</button> <!-- Botón para enviar el formulario -->
+    </form>
+</body>
+</html>
+
+{% endblock %} <!-- Fin del bloque de contenido -->

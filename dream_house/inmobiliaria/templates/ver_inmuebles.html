@@ -1,0 +1,73 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base -->
+
+{% block content %} <!-- Bloque de contenido principal -->
+
+<div class="container"> <!-- Contenedor principal -->
+    <h1 class="mt-4">Inmuebles Disponibles</h1> <!-- Título principal -->
+
+    <!-- Formulario para filtrar por comuna -->
+    <form action="{% url 'ver_inmuebles' %}" method="GET" class="mb-4"> <!-- Formulario de filtrado por comuna -->
+        <div class="row"> <!-- Fila para alinear elementos -->
+            <div class="col-md-4"> <!-- Columna para el selector de comuna -->
+                <label for="comuna" class="form-label">Filtrar por Comuna:</label> <!-- Etiqueta para el selector de comuna -->
+                <select name="comuna" id="comuna" class="form-select"> <!-- Selector de comuna -->
+                    <option value="">Todas las Comunas</option> <!-- Opción para mostrar todas las comunas -->
+                    {% for comuna in comunas %} <!-- Ciclo para mostrar todas las comunas -->
+                    <option value="{{ comuna.id }}">{{ comuna.name }}</option> <!-- Opción para cada comuna -->
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4"> <!-- Columna para el botón de filtrar -->
+                <button type="submit" class="btn btn-primary mt-4">Filtrar</button> <!-- Botón para enviar el formulario de filtrado -->
+            </div>
+        </div>
+    </form>
+
+    <!-- Formulario para filtrar por región -->
+    <form action="{% url 'ver_inmuebles' %}" method="GET" class="mb-4"> <!-- Formulario de filtrado por región -->
+        <div class="row"> <!-- Fila para alinear elementos -->
+            <div class="col-md-4"> <!-- Columna para el selector de región -->
+                <label for="region" class="form-label">Filtrar por Región:</label> <!-- Etiqueta para el selector de región -->
+                <select name="region" id="region" class="form-select"> <!-- Selector de región -->
+                    <option value="">Todas las Regiones</option> <!-- Opción para mostrar todas las regiones -->
+                    {% for region in regiones %} <!-- Ciclo para mostrar todas las regiones -->
+                    <option value="{{ region.id }}">{{ region.name }}</option> <!-- Opción para cada región -->
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4"> <!-- Columna para el botón de filtrar -->
+                <button type="submit" class="btn btn-primary mt-4">Filtrar</button> <!-- Botón para enviar el formulario de filtrado -->
+            </div>
+        </div>
+    </form>
+
+    <!-- Lista de inmuebles filtrados en cards -->
+    <div class="row"> <!-- Fila para alinear las cards de los inmuebles -->
+        {% if inmuebles %} <!-- Verifica si hay inmuebles -->
+            {% for inmueble in inmuebles %} <!-- Ciclo para mostrar cada inmueble -->
+            <div class="col-md-4"> <!-- Columna para cada card de inmueble -->
+                <div class="card mb-4"> <!-- Card de inmueble -->
+                    {% if inmueble.imagen %} <!-- Verifica si hay imagen -->
+                    <img src="{{ inmueble.imagen.url }}" class="card-img-top" alt="Imagen de {{ inmueble.nombre }}"> <!-- Muestra la imagen del inmueble -->
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="No image available"> <!-- Muestra una imagen por defecto si no hay imagen -->
+                    {% endif %}
+                    <div class="card-body"> <!-- Cuerpo de la card -->
+                        <h5 class="card-title">{{ inmueble.nombre }}</h5> <!-- Título del inmueble -->
+                        <p class="card-text">{{ inmueble.descripcion }}</p> <!-- Descripción del inmueble -->
+                        <a href="{% url 'detalles_inmueble' inmueble.id %}" class="btn btn-primary">Ver Detalles</a> <!-- Botón para ver detalles del inmueble -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12"> <!-- Columna para mensaje de alerta si no hay inmuebles -->
+                <div class="alert alert-warning" role="alert"> <!-- Mensaje de alerta -->
+                    No se encontraron inmuebles para los criterios de búsqueda seleccionados.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %} <!-- Fin del bloque de contenido -->

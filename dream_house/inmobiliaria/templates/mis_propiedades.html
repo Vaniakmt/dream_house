@@ -1,0 +1,33 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base -->
+
+{% block title %}Mis Propiedades{% endblock %} <!-- Definir el título de la página -->
+
+{% block content %} <!-- Definir el bloque de contenido -->
+
+<div class="container"> <!-- Contenedor principal -->
+    <h1 class="mt-4">Mis Propiedades</h1> <!-- Encabezado principal -->
+    <div class="row"> <!-- Fila para mostrar las propiedades -->
+        {% for inmueble in inmuebles %} <!-- Iterar sobre las propiedades -->
+        <div class="col-md-4 mb-4"> <!-- Columna con ancho medio y margen inferior -->
+            <div class="card"> <!-- Tarjeta para mostrar cada propiedad -->
+                {% if inmueble.imagen %} <!-- Verificar si la propiedad tiene una imagen -->
+                <img src="{{ inmueble.imagen.url }}" class="card-img-top" alt="Imagen de {{ inmueble.nombre }}"> <!-- Mostrar la imagen de la propiedad -->
+                {% else %}
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="No image available"> <!-- Mostrar una imagen de relleno si no hay imagen disponible -->
+                {% endif %}
+                <div class="card-body"> <!-- Cuerpo de la tarjeta -->
+                    <h5 class="card-title">{{ inmueble.nombre }}</h5> <!-- Título de la propiedad -->
+                    <p class="card-text">{{ inmueble.direccion }}</p> <!-- Dirección de la propiedad -->
+                    <a href="{% url 'actualizar_inmueble' inmueble.id %}" class="btn btn-primary">Actualizar</a> <!-- Enlace para actualizar la propiedad -->
+                    <form action="{% url 'borrar_inmueble' inmueble.id %}" method="post" style="display:inline;"> <!-- Formulario para eliminar la propiedad -->
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Eliminar</button> <!-- Botón para eliminar la propiedad -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %} <!-- Fin del bloque de contenido -->

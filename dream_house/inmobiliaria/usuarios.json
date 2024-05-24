@@ -1,0 +1,38 @@
+[
+    {
+        "model": "inmobiliaria.user",
+        "pk": 1,
+        "fields": {
+            "username": "usuario1",
+            "password": "pbkdf2_sha256$260000$ABC123...$hashedpassword",
+            "email": "usuario1@example.com",
+            "first_name": "Javiera",
+            "last_name": "Toroco",
+            "RUT": "12345678-9",
+            "address": "Calle Falsa 123",
+            "phone": "+56912345678",
+            "user_type": "arrendador",
+            "is_active": true,
+            "is_staff": false,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "inmobiliaria.user",
+        "pk": 2,
+        "fields": {
+            "username": "usaurio2",
+            "password": "pbkdf2_sha256$DEF456...$hashedpassword",
+            "email": "usuario2@example.com",
+            "first_name": "Lana",
+            "last_name": "Montenegro",
+            "RUT": "98765432-1",
+            "address": "Avenida Siempre Viva 742",
+            "phone": "+56987654321",
+            "user_type": "arrendatario",
+            "is_active": true,
+            "is_staff": false,
+            "is_superuser": false
+        }
+    }
+]

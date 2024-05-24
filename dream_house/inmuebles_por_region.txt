@@ -1,0 +1,8 @@
+
+Región: Arica y Parinacota
+	Comuna: Arica
+		Inmueble: Casa en el centro
+		Descripción: Una hermosa casa en el centro de la ciudad.
+	Comuna: Camarones
+		Inmueble: Departamento moderno
+		Descripción: Departamento moderno con vista al mar.

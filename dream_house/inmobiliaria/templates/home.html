@@ -1,0 +1,29 @@
+{% extends "base.html" %} <!-- Extiende la plantilla base -->
+
+{% load static %} <!-- Cargar archivos estáticos -->
+
+{% block title %}Home{% endblock %} <!-- Definir el título de la página -->
+
+{% block content %} <!-- Definir el bloque de contenido -->
+
+<div class="container-fluid"> <!-- Contenedor principal -->
+    <div class="row justify-content-center"> <!-- Fila centrada -->
+        <div class="col-md-6 text-center"> <!-- Columna con ancho medio y contenido centrado -->
+            <div class="jumbotron"> <!-- Encabezado destacado -->
+                <h2>Bienvenido</h2> <!-- Título -->
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4"> <!-- Fila centrada con margen superior -->
+        <div class="col-md-6 text-center"> <!-- Columna con ancho medio y contenido centrado -->
+            <img src="{% static 'images/H2.png' %}" alt="Home Image" class="img-fluid w-100 h-100"> <!-- Imagen fluida con tamaño máximo -->
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4"> <!-- Fila centrada con margen superior -->
+        <div class="col-md-6 text-center"> <!-- Columna con ancho medio y contenido centrado -->
+            <a href="{% url 'ver_inmuebles' %}" class="btn btn-primary">Ver Viviendas</a> <!-- Botón para ver viviendas -->
+        </div>
+    </div>
+</div>
+
+{% endblock %} <!-- Fin del bloque de contenido -->

@@ -1,0 +1,41 @@
+{% extends 'base.html' %} <!-- Extender la plantilla base -->
+
+{% block title %}Detalles del Inmueble{% endblock %} <!-- Definir el título de la página -->
+
+{% block content %} <!-- Definir el bloque de contenido -->
+
+<div class="container"> <!-- Contenedor principal -->
+    <h1 class="mt-4">Detalles del Inmueble</h1> <!-- Título de la página -->
+    <div class="row justify-content-center"> <!-- Fila para alinear el contenido al centro -->
+        <div class="col-md-6"> <!-- Columna de ancho medio -->
+            <div class="card mb-4"> <!-- Tarjeta para mostrar los detalles del inmueble -->
+                {% if inmueble.imagen %} <!-- Condición: si hay una imagen del inmueble -->
+                <img src="{{ inmueble.imagen.url }}" class="card-img-top" alt="Imagen de {{ inmueble.nombre }}"> <!-- Mostrar la imagen del inmueble -->
+                {% else %} <!-- Si no hay imagen -->
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="No hay imagen disponible"> <!-- Mostrar imagen de marcador de posición -->
+                {% endif %}
+                <div class="card-body"> <!-- Cuerpo de la tarjeta -->
+                    <h5 class="card-title">{{ inmueble.nombre }}</h5> <!-- Nombre del inmueble -->
+                    <p class="card-text">{{ inmueble.descripcion }}</p> <!-- Descripción del inmueble -->
+                    <ul class="list-group list-group-flush"> <!-- Lista para mostrar los detalles del inmueble -->
+                        <li class="list-group-item"><strong>Metros cuadrados construidos:</strong> {{ inmueble.m2_construidos }}</li> <!-- Metros cuadrados construidos -->
+                        <li class="list-group-item"><strong>Metros cuadrados totales:</strong> {{ inmueble.m2_totales }}</li> <!-- Metros cuadrados totales -->
+                        <li class="list-group-item"><strong>Número de estacionamientos:</strong> {{ inmueble.num_estacionamientos }}</li> <!-- Número de estacionamientos -->
+                        <li class="list-group-item"><strong>Número de habitaciones:</strong> {{ inmueble.num_habitaciones }}</li> <!-- Número de habitaciones -->
+                        <li class="list-group-item"><strong>Número de baños:</strong> {{ inmueble.num_banos }}</li> <!-- Número de baños -->
+                        <li class="list-group-item"><strong>Dirección:</strong> {{ inmueble.direccion }}</li> <!-- Dirección -->
+                        <li class="list-group-item"><strong>Comuna:</strong> {{ inmueble.comuna }}</li> <!-- Comuna -->
+                        <li class="list-group-item"><strong>Tipo de inmueble:</strong> {{ inmueble.tipo_inmueble }}</li> <!-- Tipo de inmueble -->
+                        <li class="list-group-item"><strong>Precio mensual:</strong> {{ inmueble.precio_mensual }}</li> <!-- Precio mensual -->
+                    </ul>
+                   
+                    {% if user.is_authenticated and user.user_type == 'arrendatario' %} <!-- Si el usuario está autenticado y es un arrendatario -->
+                        <a href="{% url 'solicitar_arriendo' inmueble.id %}" class="btn btn-primary mt-3">Enviar Solicitud de Arriendo</a> <!-- Botón para enviar solicitud de arriendo -->
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} <!-- Fin del bloque de contenido -->
