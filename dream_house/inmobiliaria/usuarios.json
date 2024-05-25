@@ -21,7 +21,7 @@
         "model": "inmobiliaria.user",
         "pk": 2,
         "fields": {
-            "username": "usaurio2",
+            "username": "usuario2",
             "password": "pbkdf2_sha256$DEF456...$hashedpassword",
             "email": "usuario2@example.com",
             "first_name": "Lana",
